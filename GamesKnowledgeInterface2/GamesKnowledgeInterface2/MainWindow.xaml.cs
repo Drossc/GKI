@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace GamesKnowledgeInterface2
 {
@@ -31,7 +32,7 @@ namespace GamesKnowledgeInterface2
             //Title of the video game
             public string GameTitle { get; set; }
             //Date added to database
-            public DateTime DateAdded { get; set; }
+            public string DateAdded { get; set; }
             //Text value of UPC
             public string GameUPCs { get; set; }
             //Description of game
@@ -54,80 +55,78 @@ namespace GamesKnowledgeInterface2
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             //Confirm if anything exists within the game title
-            if (tbGameTitle.Text != null)
+            if (tbGameTitle.Text != "")
             {
-                //string infoFile = @"C:\Users\dross\source\repos\GKI\GamesKnowledgeInterface2\LetEmKnowThings.txt";
-                GameInformation gameInfo = new GameInformation
+                GameInformation pullGameInfo = new GameInformation
                 {
+                    //Where to store information
                     InfoFile = @"C:\Users\dross\source\repos\GKI\GamesKnowledgeInterface2\LetEmKnowThings.txt",
+                    //Assign the values from xaml
+                    //Name of game
                     GameTitle = tbGameTitle.Text,
-                    DateAdded = DateTime.Now,
+                    //Date added to database
+                    DateAdded = DateTime.Now.ToString(format: "MM/dd/yyyy"),
+                    //Text value of UPC
                     GameUPCs = tbGameUPC.Text,
+                    //Description of game
                     GameDescription = tbGameDescription.Text,
+                    //Date game was purchased
                     PurchaseDate = tbPurchaseDate.Text,
+                    //Amount game was purchased for
                     PurchaseAmount = Convert.ToDouble(tbPurchaseAmount.Text),
+                    //Where the purchase took place
                     PurchaseLocation = tbPurchaseLocation.Text,
+                    //Original retail value of the game
                     RetailValue = Convert.ToDouble(tbRetailValue.Text),
+                    //Calculated discount value of the game
                     DiscountValue = Convert.ToDouble(tbDiscountValue.Text),
+                    //Date game was originally release on entered platform
                     ReleaseDate = tbReleaseDate.Text,
+                    //Platform game released/purchased on
                     GamePlatform = tbGamePlatform.Text
                 };
-                /* Moved to public class instead of declaring in private void action
-                string gameTitle;
-                //Date added to database
-                DateTime dateAdded; //change into date
-                //Int value of UPC
-                //int gameUPCi;
-                //Text value of UPC
-                string gameUPCs;
-                //Description of game
-                string gameDescription;
-                //Date game was purchased
-                string purchaseDate; //change into date
-                //Amount game was purchased for
-                double purchaseAmount = 0.0d;
-                //Where the purchase took place
-                string purchaseLocation;
-                //Original retail value of the game
-                double retailValue = 0.0d;
-                //Calculated discount value of the game
-                double discountValue = 0.0d;
-                //Date game was originally release on entered platform
-                string releaseDate; //change into date
-                //Platform game released/purchased on
-                string gamePlatform;
-                //Assign the values from xaml
-                gameTitle = tbGameTitle.Text;
-                dateAdded = DateTime.Now;
-                gameUPCs = tbGameUPC.Text;
-                //Error given of either too large or too small for an Int32
-                /*gameUPCi = Convert.ToInt32(gameUPCs); //DecimalUpDown/DoubleUpDown/IntegerUpdown exists in Extended WPF ToolKit, Need to Update*/
-                /*gameDescription = tbGameDescription.Text;
-                purchaseDate = tbPurchaseDate.Text;
-                purchaseAmount = Convert.ToDouble(tbPurchaseAmount.Text); //DecimalUpDown/DoubleUpDown/IntegerUpdown exists in Extended WPF ToolKit, Need to Update
-                purchaseLocation = tbPurchaseLocation.Text;
-                retailValue = Convert.ToDouble(tbRetailValue.Text); //DecimalUpDown/DoubleUpDown/IntegerUpdown exists in Extended WPF ToolKit, Need to Update
-                discountValue = Convert.ToDouble(tbDiscountValue.Text); //DecimalUpDown/DoubleUpDown/IntegerUpdown exists in Extended WPF ToolKit, Need to Update
-                releaseDate = tbReleaseDate.Text;
-                gamePlatform = tbGamePlatform.Text;*/
                 //Assign information to send
-                string[] infoToWrite = {gameInfo.GameUPCs + "," + 
-                                        (Convert.ToString(gameInfo.DateAdded)) + "," +
-                                        gameInfo.GameTitle + "," + 
-                                        gameInfo.GameDescription + "," +
-                                        gameInfo.PurchaseDate + "," + 
-                                        Convert.ToString(gameInfo.PurchaseAmount) + "," + 
-                                        gameInfo.PurchaseLocation + "," + 
-                                        Convert.ToString(gameInfo.RetailValue) + "," +
-                                        Convert.ToString(gameInfo.DiscountValue) + "," +
-                                        gameInfo.ReleaseDate + "," +
-                                        gameInfo.GamePlatform};
+                string[] infoToWrite = {pullGameInfo.GameUPCs + "," + 
+                                        pullGameInfo.DateAdded + "," +
+                                        pullGameInfo.GameTitle + "," +
+                                        pullGameInfo.GameDescription + "," +
+                                        pullGameInfo.PurchaseDate + "," + 
+                                        Convert.ToString(pullGameInfo.PurchaseAmount) + "," +
+                                        pullGameInfo.PurchaseLocation + "," + 
+                                        Convert.ToString(pullGameInfo.RetailValue) + "," +
+                                        Convert.ToString(pullGameInfo.DiscountValue) + "," +
+                                        pullGameInfo.ReleaseDate + "," +
+                                        pullGameInfo.GamePlatform};
                 //Send information to predetermined file
-                System.IO.File.WriteAllLines(gameInfo.InfoFile,infoToWrite);
+
+                //Texted added only once to a file
+                if (!File.Exists(pullGameInfo.InfoFile))
+                {
+                    using (StreamWriter infoToWriteTo = File.CreateText(pullGameInfo.InfoFile))
+                    {
+                        infoToWriteTo.WriteLine("Game Knowledge Information");
+                    }
+                }
+                using (StreamWriter infoToWriteTo = File.AppendText(pullGameInfo.InfoFile))
+                {
+                    //infoToWriteTo.WriteLine("UPC,DateAdded,GameTitle,GameDescription,PurchaseDate,PurchaseAmount,PurchaseLocation,RetailValue,DiscountValue,ReleaseDate,GamePlatform");
+                    infoToWriteTo.WriteLine(infoToWrite[0]);
+                }
+                /*using (StreamReader infoToRead = File.OpenText(pullGameInfo.InfoFile))
+                {
+                    string something = "";
+                    while ((something = infoToRead.ReadLine()) != null)
+                    {
+                        Console.WriteLine(something);
+                    }
+                }*/
+                //System.IO.File.WriteAllLines(pullGameInfo.InfoFile,infoToWrite);
                 //Need to write to end of file instead of overriding whole file
                 //Need to clear form for new entry
                 //Notify user that the information has been saved
-                MessageBox.Show("Information has been recorded successfully!", "GKI");
+                //MessageBox.Show("Information has been recorded successfully!", "GKI");
+                tbDateAdded.Text = pullGameInfo.DateAdded;
+                lblCursorPostion.Text = "Information successfully recorded!";
             }
         }
         private void btnExit_Click(object sender, RoutedEventArgs e)

@@ -9,34 +9,40 @@
     <Grid>
         <GroupBox x:Name="gbGameInformation" Header="Game Information" HorizontalAlignment="Left" Height="304" Margin="10,40,0,0" VerticalAlignment="Top" Width="316"/>
         <Label x:Name="laGameTitle" Content="Title" HorizontalAlignment="Left" Margin="15,60,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbGameTitle" HorizontalAlignment="Left" Height="23" Margin="95,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbGameTitle" HorizontalAlignment="Left" Height="23" Margin="95,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laGameUPC" Content="UPC" HorizontalAlignment="Left" Margin="15,91,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbGameUPC" HorizontalAlignment="Left" Height="23" Margin="95,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbGameUPC" HorizontalAlignment="Left" Height="23" Margin="95,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laGameDescription" Content="Description" HorizontalAlignment="Left" Margin="15,119,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbGameDescription" HorizontalAlignment="Left" Height="23" Margin="95,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbGameDescription" HorizontalAlignment="Left" Height="23" Margin="95,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laReleaseDate" Content="Release Date" HorizontalAlignment="Left" Margin="15,150,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbReleaseDate" HorizontalAlignment="Left" Height="23" Margin="95,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbReleaseDate" HorizontalAlignment="Left" Height="23" Margin="95,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laGamePlatform" Content="Platform" HorizontalAlignment="Left" Margin="15,181,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbGamePlatform" HorizontalAlignment="Left" Height="23" Margin="95,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        
+        <TextBox x:Name="tbGamePlatform" HorizontalAlignment="Left" Height="23" Margin="95,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+
         <GroupBox x:Name="gbPurchase" Header="Purchase Information" HorizontalAlignment="Left" Height="304" Margin="400,40,0,0" VerticalAlignment="Top" Width="316"/>
         <Label x:Name="laPurchaseDate" Content="Date" HorizontalAlignment="Left" Margin="408,60,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbPurchaseDate" HorizontalAlignment="Left" Height="23" Margin="488,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbPurchaseDate" HorizontalAlignment="Left" Height="23" Margin="488,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laPurchaseAmount" Content="Amount" HorizontalAlignment="Left" Margin="408,90,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbPurchaseAmount" HorizontalAlignment="Left" Height="23" Margin="488,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbPurchaseAmount" HorizontalAlignment="Left" Height="23" Margin="488,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laPurchaseLocation" Content="Location" HorizontalAlignment="Left" Margin="408,121,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbPurchaseLocation" HorizontalAlignment="Left" Height="23" Margin="488,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbPurchaseLocation" HorizontalAlignment="Left" Height="23" Margin="488,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laRetailValue" Content="Retail Value" HorizontalAlignment="Left" Margin="408,152,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbRetailValue" HorizontalAlignment="Left" Height="23" Margin="488,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbRetailValue" HorizontalAlignment="Left" Height="23" Margin="488,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
         <Label x:Name="laDiscountValue" Content="Discount Value" HorizontalAlignment="Left" Margin="408,183,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="tbDiscountValue" HorizontalAlignment="Left" Height="23" Margin="488,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbDiscountValue" HorizontalAlignment="Left" Height="23" Margin="488,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
 
         <Label x:Name="laDateAdded" Content="Date Added" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="tbDateAdded" HorizontalAlignment="Left" Height="23" Margin="90,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        
-        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}"/>
-        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="btnAdd_Click"/>
-        <Button x:Name="btnRemove" Content="Remove" HorizontalAlignment="Left" Margin="95,389,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}"/>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="657,389,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="btnExit_Click"/>
+
+        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="325,11,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="215,350,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="btnAdd_Click"/>
+        <Button x:Name="btnRemove" Content="Remove" HorizontalAlignment="Left" Margin="295,350,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="641,350,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="btnExit_Click"/>
+        <StatusBar x:Name="sbGameStatusBar" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="700" Margin="15,385,0,0" Background="White">
+            <StatusBarItem>
+                <TextBlock Name="lblCursorPostion"/>
+            </StatusBarItem>
+        </StatusBar>
+        <TextBox x:Name="tbGameTitle_Copy" HorizontalAlignment="Left" Height="23" Margin="95,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
     </Grid>
 </Window>
