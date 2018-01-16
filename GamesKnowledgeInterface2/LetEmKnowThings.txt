@@ -5,3 +5,4 @@ Game Knowledge Information
 11111111111111,05/03/2018,Super Mario Brother,The Best Game Ever,01/01/1985,29.99,Wal-Mart,29.99,0,01/01/1985,Nintendo Entertainment System
 00000000000000,07/03/2018,Hello World,The first game ever made,01/01/1901,1000000000,basement,1000000000,0,01/01/1901,vaccuum
 0000000000,01/03/2018,Where is Waldo,something weird here,01/01/1953,100,somewhere,100,0,01/01/1953,Not a computer
+045496591595,01/06/2018,Xenoblade Chronicles 2,Fun Game,12/31/2017,59.99,Best Buy,59.99,0,12/31/2017,Nintendo Switch
