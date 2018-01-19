@@ -6,31 +6,56 @@ using System.Threading.Tasks;
 
 namespace GamesKnowledgeInterface2
 {
-    class VideoGame
+    public class VideoGame
     {
-        //File storing all information
+        /// <summary>
+        /// File Storing Video Game Information
+        /// </summary>
         public string InfoFile;
-        //Title of the video game
+        /// <summary>
+        /// Title of the Video Game
+        /// </summary>
         public string GameTitle;
-        //Date added to database
+        /// <summary>
+        /// Date Added to Storage File
+        /// </summary>
         public string DateAdded;
-        //Text value of UPC
+        /// <summary>
+        /// UPC as Text
+        /// </summary>
         public string GameUPCs;
-        //Description of game
+        /// <summary>
+        /// Brief Description of Video Game
+        /// </summary>
         public string GameDescription;
-        //Date game was purchased
+        /// <summary>
+        /// Date of Purchase
+        /// </summary>
         public string PurchaseDate;
-        //Amount game was purchased for
+        /// <summary>
+        /// Amount Video Game Purchase For
+        /// </summary>
         public double PurchaseAmount;
-        //Where the purchase took place
+        /// <summary>
+        /// Store Purchase Made At
+        /// </summary>
         public string PurchaseLocation;
-        //Original retail value of the game
+        /// <summary>
+        /// Video Game Release Retail Value
+        /// </summary>
         public double RetailValue;
-        //Calculated discount value of the game
+        /// <summary>
+        /// Discount Value of Video Game at Time of Purchase
+        /// </summary>
+        ///<remarks>Value should be a calculation of Purchase Amount Divided by Retail Value</remarks>
         public double DiscountValue;
-        //Date game was originally release on entered platform
+        /// <summary>
+        /// U.S. Release Date of the Video Game
+        /// </summary>
         public string ReleaseDate;
-        //Platform game released/purchased on
+        /// <summary>
+        /// Platform Video Game Purchased On
+        /// </summary>
         public string GamePlatform;
     }
 }
