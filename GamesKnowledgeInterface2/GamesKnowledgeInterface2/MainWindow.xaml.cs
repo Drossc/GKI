@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Data;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,6 +25,9 @@ namespace GamesKnowledgeInterface2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int parsedGameID;
+        string connstr = GamesKnowledgeInterface2.Utility.GetConnectionString();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,7 +39,7 @@ namespace GamesKnowledgeInterface2
             if (tbGameTitle.Text.Length > 0)
             {
                 // Video Game Details Loaded From UI
-                VideoGame pullGameInfo = new VideoGame
+                /*VideoGame pullGameInfo = new VideoGame
                 {
                     InfoFile = @"C:\Users\dross\source\repos\GKI\GamesKnowledgeInterface2\LetEmKnowThings.txt",
                     GameTitle = tbGameTitle.Text,
@@ -48,10 +52,33 @@ namespace GamesKnowledgeInterface2
                     RetailValue = Convert.ToDouble(tbRetailValue.Text),
                     DiscountValue = Convert.ToDouble(tbDiscountValue.Text),
                     ReleaseDate = tbReleaseDate.Text,
-                    GamePlatform = tbGamePlatform.Text
-                };
-                
-                //Assign Information to Send
+                    GamePlatform = tbGamePlatform.Text 
+                };*/
+
+                SqlConnection conn = new SqlConnection(connstr);
+
+                SqlCommand cmdNewGame = new SqlCommand("VideoGames.GameTitle", conn);
+                cmdNewGame.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdNewGame.Parameters.Add(new SqlParameter("@GameTitle", SqlDbType.NVarChar,40));
+                cmdNewGame.Parameters["@GameTitle"].Value = tbGameTitle.Text;
+                cmdNewGame.Parameters["@ID"].Direction = ParameterDirection.Output;
+
+                try
+                {
+                    conn.Open();
+                    cmdNewGame.ExecuteNonQuery();
+                    this.parsedGameID = (int)cmdNewGame.Parameters["@ID"].Value;
+                    this.tbDateAdded.Text = Convert.ToString(parsedGameID);
+                }
+                catch
+                {
+                    MessageBox.Show("ID was not returned");
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                /*
                 string[] infoToWrite = {pullGameInfo.GameUPCs + "," + 
                                         pullGameInfo.DateAdded + "," +
                                         pullGameInfo.GameTitle + "," +
@@ -64,6 +91,7 @@ namespace GamesKnowledgeInterface2
                                         pullGameInfo.ReleaseDate + "," +
                                         pullGameInfo.GamePlatform};
                 
+
                 //Send Information to Storage File
                 if (!File.Exists(pullGameInfo.InfoFile))
                 {
@@ -76,9 +104,11 @@ namespace GamesKnowledgeInterface2
                 {
                     infoToWriteTo.WriteLine(infoToWrite[0]);
                 }
+                */
 
                 //Show Detail Storage Date
-                tbDateAdded.Text = pullGameInfo.DateAdded;
+                //tbDateAdded.Text = pullGameInfo.DateAdded;
+                tbDateAdded.Text = DateTime.Now.ToString("MM/dd/yyyy");
                 //Notify Use of Completion
                 lblCursorPostion.Text = "Information successfully recorded!";
             }
