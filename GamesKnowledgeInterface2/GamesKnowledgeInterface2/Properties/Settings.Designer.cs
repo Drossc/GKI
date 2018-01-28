@@ -26,9 +26,9 @@ namespace GamesKnowledgeInterface2.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\ProjectsV13;Initial Catalog=GKIThings;Integrated Security=T" +
-            "rue;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationInte" +
-            "nt=ReadWrite;MultiSubnetFailover=False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\ProjectsV13;Initial Catalog=\"GKIThings\";Integrated Security" +
+            "=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIn" +
+            "tent=ReadWrite;MultiSubnetFailover=False")]
         public string connString {
             get {
                 return ((string)(this["connString"]));

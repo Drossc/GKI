@@ -38,36 +38,40 @@ namespace GamesKnowledgeInterface2
             //Confirm Length of Game Title in UI to determine execution needs
             if (tbGameTitle.Text.Length > 0)
             {
-                // Video Game Details Loaded From UI
-                /*VideoGame pullGameInfo = new VideoGame
-                {
-                    InfoFile = @"C:\Users\dross\source\repos\GKI\GamesKnowledgeInterface2\LetEmKnowThings.txt",
-                    GameTitle = tbGameTitle.Text,
-                    DateAdded = DateTime.Now.ToString(format: "MM/dd/yyyy"),
-                    GameUPCs = tbGameUPC.Text,
-                    GameDescription = tbGameDescription.Text,
-                    PurchaseDate = tbPurchaseDate.Text,
-                    PurchaseAmount = Convert.ToDouble(tbPurchaseAmount.Text),
-                    PurchaseLocation = tbPurchaseLocation.Text,
-                    RetailValue = Convert.ToDouble(tbRetailValue.Text),
-                    DiscountValue = Convert.ToDouble(tbDiscountValue.Text),
-                    ReleaseDate = tbReleaseDate.Text,
-                    GamePlatform = tbGamePlatform.Text 
-                };*/
-
+                // Video Game Details Loaded From UI to SQL Database
                 SqlConnection conn = new SqlConnection(connstr);
-
-                SqlCommand cmdNewGame = new SqlCommand("VideoGames.GameTitle", conn);
+                SqlCommand cmdNewGame = new SqlCommand("vgAddNewGame", conn);
                 cmdNewGame.CommandType = System.Data.CommandType.StoredProcedure;
                 cmdNewGame.Parameters.Add(new SqlParameter("@GameTitle", SqlDbType.NVarChar,40));
                 cmdNewGame.Parameters["@GameTitle"].Value = tbGameTitle.Text;
-                cmdNewGame.Parameters["@ID"].Direction = ParameterDirection.Output;
+                cmdNewGame.Parameters.Add(new SqlParameter("@DateAdded", SqlDbType.Text));
+                cmdNewGame.Parameters["@DateAdded"].Value = DateTime.Now;
+                cmdNewGame.Parameters.Add(new SqlParameter("@GameUPC", SqlDbType.Text));
+                cmdNewGame.Parameters["@GameUPC"].Value = tbGameUPC.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@GameDescription", SqlDbType.Text));
+                cmdNewGame.Parameters["@GameDescription"].Value = tbGameDescription.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@PurchaseDate", SqlDbType.Text));
+                cmdNewGame.Parameters["@PurchaseDate"].Value = tbPurchaseDate.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@PurchaseAmount", SqlDbType.Text));
+                cmdNewGame.Parameters["@PurchaseAmount"].Value = tbPurchaseAmount.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@PurchaseLocation", SqlDbType.Text));
+                cmdNewGame.Parameters["@PurchaseLocation"].Value = tbPurchaseAmount.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@RetailValue", SqlDbType.Text));
+                cmdNewGame.Parameters["@RetailValue"].Value = tbRetailValue.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@DiscountValue", SqlDbType.Text));
+                cmdNewGame.Parameters["@DiscountValue"].Value = tbDiscountValue.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@ReleaseDate", SqlDbType.Text));
+                cmdNewGame.Parameters["@ReleaseDate"].Value = tbReleaseDate.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@GamePlatform", SqlDbType.Text));
+                cmdNewGame.Parameters["@GamePlatform"].Value = tbGamePlatform.Text;
+                cmdNewGame.Parameters.Add(new SqlParameter("@GameID", SqlDbType.Int));
+                cmdNewGame.Parameters["@GameID"].Direction = ParameterDirection.Output;
 
                 try
                 {
                     conn.Open();
                     cmdNewGame.ExecuteNonQuery();
-                    this.parsedGameID = (int)cmdNewGame.Parameters["@ID"].Value;
+                    this.parsedGameID = (int)cmdNewGame.Parameters["@GameID"].Value;
                     this.tbDateAdded.Text = Convert.ToString(parsedGameID);
                 }
                 catch
@@ -78,33 +82,6 @@ namespace GamesKnowledgeInterface2
                 {
                     conn.Close();
                 }
-                /*
-                string[] infoToWrite = {pullGameInfo.GameUPCs + "," + 
-                                        pullGameInfo.DateAdded + "," +
-                                        pullGameInfo.GameTitle + "," +
-                                        pullGameInfo.GameDescription + "," +
-                                        pullGameInfo.PurchaseDate + "," + 
-                                        Convert.ToString(pullGameInfo.PurchaseAmount) + "," +
-                                        pullGameInfo.PurchaseLocation + "," + 
-                                        Convert.ToString(pullGameInfo.RetailValue) + "," +
-                                        Convert.ToString(pullGameInfo.DiscountValue) + "," +
-                                        pullGameInfo.ReleaseDate + "," +
-                                        pullGameInfo.GamePlatform};
-                
-
-                //Send Information to Storage File
-                if (!File.Exists(pullGameInfo.InfoFile))
-                {
-                    using (StreamWriter infoToWriteTo = File.CreateText(pullGameInfo.InfoFile))
-                    {
-                        infoToWriteTo.WriteLine("Game Knowledge Information");
-                    }
-                }
-                using (StreamWriter infoToWriteTo = File.AppendText(pullGameInfo.InfoFile))
-                {
-                    infoToWriteTo.WriteLine(infoToWrite[0]);
-                }
-                */
 
                 //Show Detail Storage Date
                 //tbDateAdded.Text = pullGameInfo.DateAdded;
