@@ -95,5 +95,42 @@ namespace GamesKnowledgeInterface2
             //Closes Application
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            parsedGameID = Int32.Parse(tbSearch.Text);
+            SqlConnection conn = new SqlConnection(connstr);
+            string sql = "select * from VideoGames where GameID = @GameID";
+            SqlCommand cmdGameID = new SqlCommand(sql, conn);
+            cmdGameID.Parameters.Add(new SqlParameter("@GameID", SqlDbType.Int));
+            cmdGameID.Parameters["@GameID"].Value = parsedGameID;
+
+            try
+            {
+                conn.Open();
+
+                SqlDataReader rdr = cmdGameID.ExecuteReader();
+                DataTable dataTable = new DataTable();
+                dataTable.Load(rdr);
+                MessageBox.Show(dataTable.TableName);
+                rdr.Close();
+
+            }
+            catch
+            {
+                MessageBox.Show("No games found by this name.");
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            tbSearch.Clear();
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
